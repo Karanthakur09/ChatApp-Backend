@@ -1,5 +1,8 @@
-
+import { compare } from "bcrypt";
 import { User } from "../models/user.js";
+import { sendToken } from "../utils/features.js";
+import { ErrorHandler } from "../utils/utility.js";
+import { TryCatch } from "../middlewares/error.js";
 
 
 // Create a new user and save it to the database and save token in cookie
@@ -47,6 +50,7 @@ const login = TryCatch(async (req, res, next) => {
 
 export {
 
-    login
+    login,
+    newUser
 
 };
