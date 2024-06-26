@@ -1,10 +1,14 @@
 import express from "express";
 import userRoute from "./routes/user.js";
-import chatRoute from "./routes/chat.js";
-import adminRoute from "./routes/admin.js";
 import dotenv from "dotenv";
 import { connectDB } from "./utils/features.js";
+import cookieParser from "cookie-parser";
+import { corsOptions } from "./constants/config.js";
 
+
+
+import userRoute from "./routes/user.js";
+import chatRoute from "./routes/chat.js";
 
 
 dotenv.config({
@@ -21,8 +25,11 @@ const app = express();
 
 //setting up middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/v1/user", userRoute); //using routes and controllers in different files so as a middleware
+app.use("/api/v1/chat", chatRoute);
+
 
 app.get("/", (req, res) => {
     res.send("Welcome to the chat App");
