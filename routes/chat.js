@@ -64,6 +64,6 @@ app
   .route("/:id")
   .get(chatIdValidator(), validateHandler, getChatDetails)
   .put(renameValidator(), validateHandler, renameGroup)
-  .delete(chatIdValidator(), validateHandler, deleteChat);
+  .delete(chatIdValidator(), validateHandler, deleteChat); //chaining of the methods a new method
 
 export default app;
