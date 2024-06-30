@@ -2,6 +2,7 @@ import express from "express";
 import { getMyProfile, login } from "../controllers/user";
 import { singleAvatar } from "../middlewares/multer.js";
 import { isAuthenticated, logout } from "../middlewares/auth.js";
+import { loginValidator, registerValidator, validateHandler } from "../lib/validators.js";
 
 const app = express.Router();
 
@@ -14,6 +15,8 @@ app.use(isAuthenticated);
 
 app.get("/me", getMyProfile);
 app.get("/logout", logout);
+app.get("/search", searchUser);
+
 //after this only authenticated user must access further
 app.use(errorMiddleware);//at the end
 
